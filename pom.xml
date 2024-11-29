@@ -91,7 +91,27 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>org.example.Main</mainClass>
+				</configuration>
+			</plugin>
 
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.1.5</version>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -102,7 +122,17 @@
 				</configuration>
 			</plugin>
 
-
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<achive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>org.example.Main</mainClass>
+						</manifest>
+					</achive>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
