@@ -37,7 +37,6 @@ pipeline {
         // New stage for testing
         stage('Test') {
             steps {
-                echo "TEST DONE!!!!!!!!!!!!!!!!!!!"
                 // Add your specific testing commands here
                 // Example: sh 'mvn test' (replace with your actual test commands)
             }
@@ -54,13 +53,13 @@ pipeline {
         // New stage for redeployment with manual approval
         stage('Redeploy (On Approval)') {
             when {
-                expression { return params.CONSENT } // Only proceed if user consented
+                expression { return params.CONSENT == "True" } // Only proceed if user consented
             }
             steps {
                 input {
                     message: 'Are you sure you want to redeploy?'
-                    ok: 'Yes'
-                    cancel: 'No'
+                    //ok: 'Yes'
+                    //cancel: 'No'
                 }
                 // Redeployment steps based on your environment (e.g., using a deploy tool)
                 // Example: Assuming a deploy script named "deploy.sh"
