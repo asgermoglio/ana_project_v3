@@ -18,11 +18,11 @@ pipeline {
         stage('Test') {
             steps {
                 echo "------------------------------------------------------------------"
-                echo "STARTING TEEST"
+                echo "STARTING TEST"
                 sh 'mvn clean:clean'
                 sh 'mvn dependency:copy-dependencies'
                 sh 'mvn compiler:compile'
-                sh 'mvn spring-boot:run'
+                sh 'timeout 10s mvn spring-boot:run'
                 sh 'mvn spring-boot:stop'
                 echo "TEST COMPLETED"
                 echo "------------------------------------------------------------------"
@@ -34,7 +34,7 @@ pipeline {
         stage('Package & Archive') {
             steps {
                 echo "------------------------------------------------------------------"
-                echo "PACKAKING <-------------------------------------------------------"
+                echo "PACKAGING <-------------------------------------------------------"
                 sh 'mvn package' // Assuming your project uses maven-war-plugin
                 echo "------------------------------------------------------------------"
 
