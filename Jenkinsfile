@@ -80,10 +80,10 @@ pipeline {
             }
 
         stage ('Exec') {
-                    steps {
-                        sh 'mvn spring-boot:run'
-                    }
-                }
+            steps {
+                sh 'mvn spring-boot:run'
+            }
         }
+
     }
 }
