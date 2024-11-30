@@ -64,7 +64,5 @@ pipeline {
                 sh 'mvn compiler:compile'
             }
         }
-
-
     }
 }
