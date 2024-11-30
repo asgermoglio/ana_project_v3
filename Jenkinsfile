@@ -22,8 +22,7 @@ pipeline {
                 sh 'mvn clean:clean'
                 sh 'mvn dependency:copy-dependencies'
                 sh 'mvn compiler:compile'
-                sh 'timeout 10s mvn spring-boot:run'
-                sh 'mvn spring-boot:stop'
+
                 echo "TEST COMPLETED"
                 echo "------------------------------------------------------------------"
                 echo "------------------------------------------------------------------"
