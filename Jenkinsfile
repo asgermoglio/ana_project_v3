@@ -24,7 +24,6 @@ pipeline {
         stage('Package & Archive') {
             steps {
                 sh 'mvn package' // Assuming your project uses maven-war-plugin
-                archiveArtifacts allowEmptyArchive: true
 
             }
         }
