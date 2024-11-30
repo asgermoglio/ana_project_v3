@@ -40,10 +40,12 @@ pipeline {
 
                         // Redeployment steps based on your environment (e.g., using a deploy tool)
                         // Example: Assuming a deploy script named "deploy.sh"
-                        if (params.REDEPLOY_CONFIRM == 'yes') {
-                            sh 'sh deploy.sh'
-                        } else {
-                            echo 'Redeployment cancelled.'
+                        script {
+                            if (params.REDEPLOY_CONFIRM == 'yes') {
+                                sh 'sh deploy.sh'
+                            } else {
+                                echo 'Redeployment cancelled.'
+                            }
                         }
                     }
         }
