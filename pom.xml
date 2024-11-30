@@ -12,6 +12,7 @@
 	<artifactId>ana_project_v3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ana_project_v3</name>
+	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -129,7 +130,21 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.germoglio.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
 		</plugins>
+
+		<finalName>${project.artifactId}</finalName>
 	</build>
 
 </project>
