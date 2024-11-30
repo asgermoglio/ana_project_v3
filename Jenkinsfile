@@ -13,7 +13,7 @@ pipeline {
 
     stages {
 
-    // New stage for testing
+        // New stage for testing
         stage('Test') {
             steps {
                 echo "teste done <------------------------------------------------------------------"
@@ -57,6 +57,7 @@ pipeline {
                 git 'https://github.com/asgermoglio/ana_project_v3.git'
             }
         }
+
         stage ('build') {
             steps {
                 sh 'mvn clean:clean'
