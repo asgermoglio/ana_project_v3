@@ -16,7 +16,7 @@ pipeline {
         // New stage for testing
         stage('Test') {
             steps {
-                echo "teste done <------------------------------------------------------------------"
+                echo "test done <------------------------------------------------------------------"
             }
         }
 
@@ -24,8 +24,8 @@ pipeline {
         stage('Package & Archive') {
             steps {
                 sh 'mvn package' // Assuming your project uses maven-war-plugin
-                archiveArtifacts allowEmptyArchive: true,
-                //artifacts: '**/anaspetition*.war' // Archive the generated WAR file
+                archiveArtifacts allowEmptyArchive: true
+
             }
         }
 
