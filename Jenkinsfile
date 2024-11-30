@@ -45,7 +45,8 @@ pipeline {
         stage('Package & Archive') {
             steps {
                 sh 'mvn package' // Assuming your project uses maven-war-plugin
-                archiveArtifacts 'anaspetition.war' // Archive the generated WAR file
+                archiveArtifacts allowEmptyAchive: true,
+                artiffacts: '**/anaspetition*.war' // Archive the generated WAR file
             }
         }
 
