@@ -136,7 +136,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>com.germoglio.Main</mainClass>
+							<mainClass>com.germoglio.ana_project_v3.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

@@ -33,7 +33,10 @@ pipeline {
         // New stage for packaging and archive
         stage('Package & Archive') {
             steps {
+                echo "------------------------------------------------------------------"
+                echo "PACKAKING <-------------------------------------------------------"
                 sh 'mvn package' // Assuming your project uses maven-war-plugin
+                echo "------------------------------------------------------------------"
 
             }
         }
