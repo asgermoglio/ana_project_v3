@@ -9,6 +9,7 @@ pipeline {
         string(name: 'USERNAME', defaultValue: 'TestUser', description: 'Input your username')
         choice(name: 'MODE', choices: ['Test', 'Production'])
         booleanParam(name: 'CONSENT', description: 'are you sure?')
+        choice(name: 'REDEPLOY_CONFIRM', choices: ['yes', 'no'])
     }
 
     stages {
@@ -39,7 +40,11 @@ pipeline {
 
                         // Redeployment steps based on your environment (e.g., using a deploy tool)
                         // Example: Assuming a deploy script named "deploy.sh"
-                        sh 'sh deploy.sh ${params.MODE}' // Use params.CONSENT for redeployment decision (optional)
+                        if (params.REDEPLOY_CONFIRM' == 'yes') {
+                            sh 'sh deploy.sh
+                        } else {
+                            echo 'Redeployment cancelled.'
+                        }
                     }
         }
 
