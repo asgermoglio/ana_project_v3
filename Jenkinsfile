@@ -37,7 +37,7 @@ pipeline {
         // New stage for testing
         stage('Test') {
             steps {
-                echo "test"
+                echo "teste done <------------------------------------------------------------------"
             }
         }
 
@@ -50,6 +50,18 @@ pipeline {
         }
 
         // New stage for redeployment with manual approval
+        stage('Redeploy (On Approval)') {
+                    when {
+                        expression { return params.CONSENT } // Only proceed if user consented (boolean check)
+                    }
+                    steps {
+                        // Simplified input definition
+                        input message: 'Are you sure you want to redeploy?', ok: 'Yes', cancel: 'No'
 
+                        // Redeployment steps based on your environment (e.g., using a deploy tool)
+                        // Example: Assuming a deploy script named "deploy.sh"
+                        sh 'sh deploy.sh ${params.MODE}' // Use params.CONSENT for redeployment decision (optional)
+                    }
+        }
     }
 }
