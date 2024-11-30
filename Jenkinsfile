@@ -34,9 +34,36 @@ pipeline {
             }
         }
 
-        stage ('Exec') {
+        // New stage for testing
+        stage('Test') {
             steps {
-                sh 'mvn spring-boot:run'
+                // Add your specific testing commands here
+                // Example: sh 'mvn test' (replace with your actual test commands)
+            }
+        }
+
+        // New stage for packaging and archive
+        stage('Package & Archive') {
+            steps {
+                sh 'mvn package' // Assuming your project uses maven-war-plugin
+                archiveArtifacts 'anaspetition.war' // Archive the generated WAR file
+            }
+        }
+
+        // New stage for redeployment with manual approval
+        stage('Redeploy (On Approval)') {
+            when {
+                expression { return params.CONSENT } // Only proceed if user consented
+            }
+            steps {
+                input {
+                    message 'Are you sure you want to redeploy?'
+                    ok 'Yes'
+                    cancel 'No'
+                }
+                // Redeployment steps based on your environment (e.g., using a deploy tool)
+                // Example: Assuming a deploy script named "deploy.sh"
+                sh 'sh deploy.sh ${params.MODE}'
             }
         }
     }
