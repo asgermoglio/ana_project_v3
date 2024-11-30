@@ -17,7 +17,15 @@ pipeline {
         // New stage for testing
         stage('Test') {
             steps {
-                echo "test done <------------------------------------------------------------------"
+                echo "------------------------------------------------------------------"
+                echo "STARTING TEEST"
+                sh 'mvn clean:clean'
+                sh 'mvn dependency:copy-dependencies'
+                sh 'mvn compiler:compile'
+                sh 'mvn compiler:stop'
+                echo "TEST COMPLETED"
+                echo "------------------------------------------------------------------"
+                echo "------------------------------------------------------------------"
             }
         }
 
@@ -70,6 +78,12 @@ pipeline {
                 sh 'mvn dependency:copy-dependencies'
                 sh 'mvn compiler:compile'
             }
+
+        stage ('Exec') {
+                    steps {
+                        sh 'mvn spring-boot:run'
+                    }
+                }
         }
     }
 }
