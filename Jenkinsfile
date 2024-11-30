@@ -58,9 +58,9 @@ pipeline {
             }
             steps {
                 input {
-                    message 'Are you sure you want to redeploy?'
-                    ok 'Yes'
-                    cancel 'No'
+                    message: 'Are you sure you want to redeploy?'
+                    ok: 'Yes'
+                    cancel: 'No'
                 }
                 // Redeployment steps based on your environment (e.g., using a deploy tool)
                 // Example: Assuming a deploy script named "deploy.sh"
