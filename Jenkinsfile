@@ -47,12 +47,15 @@ pipeline {
                     }
                     steps {
                         // Simplified input definition
-                        input message: 'Are you sure you want to redeploy?'
+                        input message: 'Are you sure you want to redeploy?', parameters: [
+
+                            booleanParam(defaultValue: false, name: 'REDEPLOY_CONFIRM')
+                        ]
 
                         // Redeployment steps based on your environment (e.g., using a deploy tool)
                         // Example: Assuming a deploy script named "deploy.sh"
                         script {
-                            if (params.REDEPLOY_CONFIRM == 'yes') {
+                            if (params.REDEPLOY_CONFIRM) {
                                 sh 'sh deploy.sh'
                             } else {
                                 echo 'Redeployment cancelled.'
