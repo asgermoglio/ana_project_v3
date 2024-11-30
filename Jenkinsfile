@@ -37,6 +37,7 @@ pipeline {
         // New stage for testing
         stage('Test') {
             steps {
+                echo "TEST DONE!!!!!!!!!!!!!!!!!!!"
                 // Add your specific testing commands here
                 // Example: sh 'mvn test' (replace with your actual test commands)
             }
